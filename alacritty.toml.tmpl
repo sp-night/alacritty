@@ -1,0 +1,97 @@
+---
+spn:
+  version: "^1.0"
+  matrix: [flavor]
+  filename: "themes/sp_night_{{ .Flavor }}.toml"
+---
+# SP Night — {{ .FlavorLabel }}
+# {{ .FlavorDesc }}
+#
+# Generated from the SP Night palette — do not edit by hand.
+# {{ .Repo }}
+#
+# install: {{ .Install }}
+# enable:  {{ .Activate }}   (under [general] since Alacritty 0.14, top level on 0.13)
+
+# The plane everything sits on. `dim_foreground` is the one Alacritty would
+# calculate for itself; naming it keeps faint text inside the measured palette
+# instead of at whatever a multiplier lands on.
+#
+# `bright_foreground` is absent, and that is a finding rather than an omission.
+# The role layer has no colour above `ui.fg` for text: `ansi.bright_white` is
+# `fg` itself, so setting the key would write the same hex twice and claim a lift
+# that is not there. Alacritty falls back to `foreground`, which is that hex
+# anyway. Writing a brighter one here would put a colour in a theme file that no
+# contrast audit ever measured, which is the one thing this project does not do.
+[colors.primary]
+background     = "{{ .R.ui.bg }}"
+foreground     = "{{ .R.ui.fg }}"
+dim_foreground = "{{ .R.ui.fg_dim }}"
+
+# The signature colour, with dark text inside it.
+[colors.cursor]
+cursor = "{{ .R.ui.cursor }}"
+text   = "{{ .R.ui.on_accent }}"
+
+# Vi mode is a different mode, not a dimmer one, so the cursor changes hue rather
+# than brightness. Blue is the system accent everywhere else in this theme.
+[colors.vi_mode_cursor]
+cursor = "{{ .R.ui.accent_alt }}"
+text   = "{{ .R.ui.on_accent }}"
+
+[colors.selection]
+background = "{{ .R.ui.selection }}"
+text       = "{{ .R.ui.fg }}"
+
+# Search. Every hit takes the match colour, and the one the cursor is on takes the
+# signature colour, so the position is never lost among the others.
+[colors.search.matches]
+background = "{{ .R.ui.match }}"
+foreground = "{{ .R.ui.on_accent }}"
+
+[colors.search.focused_match]
+background = "{{ .R.ui.accent }}"
+foreground = "{{ .R.ui.on_accent }}"
+
+# A hint label reads left to right, so the character to press next is loud and the
+# rest of the label stays on concrete.
+[colors.hints.start]
+background = "{{ .R.ui.accent }}"
+foreground = "{{ .R.ui.on_accent }}"
+
+[colors.hints.end]
+background = "{{ .R.ui.panel }}"
+foreground = "{{ .R.ui.fg }}"
+
+# The search prompt and the URI preview sit on exposed concrete; the line and
+# column readout recedes into the deepest surface.
+[colors.footer_bar]
+background = "{{ .R.ui.panel }}"
+foreground = "{{ .R.ui.fg }}"
+
+[colors.line_indicator]
+background = "{{ .R.ui.bg_deep }}"
+foreground = "{{ .R.ui.fg_dim }}"
+
+# The 16 ANSI colours. [colors.dim] is deliberately absent: the palette has no
+# measured dim ladder, and a project that gates on contrast should not ship a
+# third set of colours nobody checked. Alacritty derives faint text on its own.
+[colors.normal]
+black   = "{{ .R.ansi.black }}"
+red     = "{{ .R.ansi.red }}"
+green   = "{{ .R.ansi.green }}"
+yellow  = "{{ .R.ansi.yellow }}"
+blue    = "{{ .R.ansi.blue }}"
+magenta = "{{ .R.ansi.magenta }}"
+cyan    = "{{ .R.ansi.cyan }}"
+white   = "{{ .R.ansi.white }}"
+
+[colors.bright]
+black   = "{{ .R.ansi.bright_black }}"
+red     = "{{ .R.ansi.bright_red }}"
+green   = "{{ .R.ansi.bright_green }}"
+yellow  = "{{ .R.ansi.bright_yellow }}"
+blue    = "{{ .R.ansi.bright_blue }}"
+magenta = "{{ .R.ansi.bright_magenta }}"
+cyan    = "{{ .R.ansi.bright_cyan }}"
+white   = "{{ .R.ansi.bright_white }}"

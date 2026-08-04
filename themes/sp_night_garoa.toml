@@ -1,0 +1,91 @@
+# SP Night — Garoa
+# A mesma janela, vista através do chuvisco. Cinza chapado — a garoa não esfria a cidade, ela desbota.
+#
+# Generated from the SP Night palette — do not edit by hand.
+# https://github.com/sp-night/alacritty
+#
+# install: ~/.config/alacritty/themes/sp_night_garoa.toml
+# enable:  import = ["~/.config/alacritty/themes/sp_night_garoa.toml"]   (under [general] since Alacritty 0.14, top level on 0.13)
+
+# The plane everything sits on. `dim_foreground` is the one Alacritty would
+# calculate for itself; naming it keeps faint text inside the measured palette
+# instead of at whatever a multiplier lands on.
+#
+# `bright_foreground` is absent, and that is a finding rather than an omission.
+# The role layer has no colour above `ui.fg` for text: `ansi.bright_white` is
+# `fg` itself, so setting the key would write the same hex twice and claim a lift
+# that is not there. Alacritty falls back to `foreground`, which is that hex
+# anyway. Writing a brighter one here would put a colour in a theme file that no
+# contrast audit ever measured, which is the one thing this project does not do.
+[colors.primary]
+background     = "#1c1e20"
+foreground     = "#c7cdd6"
+dim_foreground = "#8d949f"
+
+# The signature colour, with dark text inside it.
+[colors.cursor]
+cursor = "#e3a068"
+text   = "#151719"
+
+# Vi mode is a different mode, not a dimmer one, so the cursor changes hue rather
+# than brightness. Blue is the system accent everywhere else in this theme.
+[colors.vi_mode_cursor]
+cursor = "#7993cb"
+text   = "#151719"
+
+[colors.selection]
+background = "#313436"
+text       = "#c7cdd6"
+
+# Search. Every hit takes the match colour, and the one the cursor is on takes the
+# signature colour, so the position is never lost among the others.
+[colors.search.matches]
+background = "#e7cb8a"
+foreground = "#151719"
+
+[colors.search.focused_match]
+background = "#e3a068"
+foreground = "#151719"
+
+# A hint label reads left to right, so the character to press next is loud and the
+# rest of the label stays on concrete.
+[colors.hints.start]
+background = "#e3a068"
+foreground = "#151719"
+
+[colors.hints.end]
+background = "#26282a"
+foreground = "#c7cdd6"
+
+# The search prompt and the URI preview sit on exposed concrete; the line and
+# column readout recedes into the deepest surface.
+[colors.footer_bar]
+background = "#26282a"
+foreground = "#c7cdd6"
+
+[colors.line_indicator]
+background = "#151719"
+foreground = "#8d949f"
+
+# The 16 ANSI colours. [colors.dim] is deliberately absent: the palette has no
+# measured dim ladder, and a project that gates on contrast should not ship a
+# third set of colours nobody checked. Alacritty derives faint text on its own.
+[colors.normal]
+black   = "#151719"
+red     = "#d87676"
+green   = "#9acaa2"
+yellow  = "#e7cb8a"
+blue    = "#7993cb"
+magenta = "#af97d3"
+cyan    = "#77babf"
+white   = "#8d949f"
+
+[colors.bright]
+black   = "#767d88"
+red     = "#ed8988"
+green   = "#addeb5"
+yellow  = "#fbdf9d"
+blue    = "#8ba6df"
+magenta = "#c2aae7"
+cyan    = "#8acdd2"
+white   = "#c7cdd6"

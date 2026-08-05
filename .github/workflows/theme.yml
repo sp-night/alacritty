@@ -1,0 +1,17 @@
+name: theme
+
+# The mapping in alacritty.toml.tmpl declares which spn version it is written against, so
+# nothing here needs updating when the tool moves. Renovate bumps the template.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    uses: sp-night/sp-night/.github/workflows/spn-check.yml@v1
+    with:
+      port: alacritty

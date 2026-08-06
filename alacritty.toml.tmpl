@@ -17,16 +17,18 @@ spn:
 # calculate for itself; naming it keeps faint text inside the measured palette
 # instead of at whatever a multiplier lands on.
 #
-# `bright_foreground` is absent, and that is a finding rather than an omission.
-# The role layer has no colour above `ui.fg` for text: `ansi.bright_white` is
-# `fg` itself, so setting the key would write the same hex twice and claim a lift
-# that is not there. Alacritty falls back to `foreground`, which is that hex
-# anyway. Writing a brighter one here would put a colour in a theme file that no
-# contrast audit ever measured, which is the one thing this project does not do.
+# `bright_foreground` used to be absent here, and the reason was honest at the
+# time: the role layer had no colour above `ui.fg` for text, so the key would
+# have written `fg` twice and claimed a lift that did not exist. The palette
+# since gained `fg_vivo`, and `ui.fg_bright` resolves to it — a measured colour
+# that has been through the same contrast audit as the rest. So the key is set,
+# and it is set to the same value `ansi.bright_white` now carries, which is what
+# keeps bold text and bright white from disagreeing about what "brighter" means.
 [colors.primary]
-background     = "{{ .R.ui.bg }}"
-foreground     = "{{ .R.ui.fg }}"
-dim_foreground = "{{ .R.ui.fg_dim }}"
+background        = "{{ .R.ui.bg }}"
+foreground        = "{{ .R.ui.fg }}"
+dim_foreground    = "{{ .R.ui.fg_dim }}"
+bright_foreground = "{{ .R.ui.fg_bright }}"
 
 # The signature colour, with dark text inside it.
 [colors.cursor]
